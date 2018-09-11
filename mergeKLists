@@ -1,0 +1,20 @@
+ public ListNode mergeKLists(ListNode[] lists) {
+        PriorityQueue<ListNode> queue = new  PriorityQueue<>((x,y)->x.val-y.val);
+        for(ListNode list:lists){
+            if(list!=null)
+                queue.add(list);
+        }
+
+        ListNode dummy = new ListNode(0);
+        ListNode cur=dummy;
+            
+        while (!queue.isEmpty()){
+            cur.next=queue.poll();
+            cur=cur.next;
+            
+            if (cur.next!=null)
+                queue.add(cur.next);
+        }
+        return dummy.next;
+   
+    }
